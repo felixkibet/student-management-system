@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
 
 typedef struct Student Student;
 
@@ -18,6 +21,46 @@ void deletestudent(Student *stud);
 
 int main()
 {
+	while(1)
+	{
+		printf("1] Create a Record\n");
+	
+	    printf("2] Display Records\n");
+	
+	    printf("3] Update Records\n");
+		
+		printf("4] Search Records\n");
+		
+		printf("5] Delete Records\n");
+		
+	    printf("6] Exit");
+		int choice;
+		Student student;
+		printf("\nEnter your choice: ");
+		scanf("%d", &choice);
+		switch(choice)
+		{
+			case 1:
+				adddetails(&student);
+				break;
+			case 2:
+				printdetails(&student);
+				break;
+			case 3:
+				editdetails(&student);
+				break;
+			case 4:
+				searchstudent(&student);
+				break;
+			case 5:
+				deletestudent(&student);
+				break;
+			case 6:
+				exit(0);
+			defaut:
+				printf("Please that is not an option");
+		}
+	}
     return 0;
 }
 
