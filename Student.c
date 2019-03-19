@@ -141,3 +141,34 @@ void searchstudent(Student *stud)
 	}
 	fclose(fptr);
 }
+
+// Delete student from the record
+void deletestudent(Student *stud)
+{
+	FILE *fptr, *fop;
+	char name[20];
+	fptr = fopen("student.txt", "rb");
+	fop = fopen("temporary.txt", "w");
+	printf("Enter name of student to delete: ");
+	scanf("%s", name);
+	while(fread(stud, sizeof(Student),1, fptr))
+	{
+		if(!strcmp(name, stud->fname) == 0)
+		{
+			fwrite(stud, sizeof(Student),1, fop);	
+		}
+	}
+	fclose(fop);
+	fclose(fptr);
+	
+	fptr = fopen("student.txt", "w");
+	fop = fopen("temporary.txt", "rb");
+	while(fread(stud, sizeof(Student), 1, fop))
+	{
+		fwrite(stud, sizeof(Student), 1, fptr);
+	}
+	printf("Record updated...\n");
+	fclose(fop);
+	fclose(fptr);
+}
+
