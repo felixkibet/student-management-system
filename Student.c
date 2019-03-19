@@ -20,3 +20,26 @@ int main()
 {
     return 0;
 }
+
+// Add student details to file
+void adddetails(Student *stud)
+{
+	FILE *fptr;
+	fptr = fopen("student.txt","a");
+	if(fptr == NULL)
+	{
+		printf("Error creating file...");
+	}
+	printf("Enter student regno:");
+	scanf("%d", &stud->regno);
+	printf("Enter student flname:");
+	scanf("%s", stud->fname);
+	printf("Enter student lname:");
+	scanf("%s", stud->lname);
+	printf("Enter student gender:");
+	scanf("%s", stud->gender);
+	printf("Enter student course:");
+	scanf("%s", stud->course);
+	fwrite(stud, sizeof(Student), 1, fptr);
+	fclose(fptr);
+}
