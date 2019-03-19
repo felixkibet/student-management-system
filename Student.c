@@ -115,3 +115,29 @@ void printdetails(Student *stud)
 	printf("\n");
 	fclose(fptr);		
 }
+
+// Search for student in the record
+void searchstudent(Student *stud)
+{
+	FILE *fptr;
+	char name[20];
+	
+	fptr = fopen("student.txt", "rb");
+	printf("Enter the first name: ->");
+	scanf("%s", name);
+	while(fread(stud, sizeof(Student),1, fptr)) 
+	{
+		if(strcmp(name,stud->fname) == 0)
+		{
+			printf("\n");
+			printf("RegNo: %d\n", stud->regno);
+			printf("First Name: %s\n", stud->fname);
+			printf("Last Name: %s\n", stud->lname);
+			printf("Gender: %s\n", stud->gender);
+			printf("Course: %s\n", stud->course);
+			getch();
+			break;
+		}	
+	}
+	fclose(fptr);
+}
