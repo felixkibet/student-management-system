@@ -43,3 +43,47 @@ void adddetails(Student *stud)
 	fwrite(stud, sizeof(Student), 1, fptr);
 	fclose(fptr);
 }
+
+// Edit student details and save to file
+void editdetails(Student *stud)
+{
+	FILE *fptr, *fop;
+	char name[20];
+	
+	fptr = fopen("student.txt","rb");
+	fop = fopen("temporary.txt","w");
+	printf("Enter name of student to update: ");
+	scanf("%s", name);
+	while(fread(stud, sizeof(Student), 1, fptr))
+	{
+		if(!strcmp(name, stud->fname) == 0)
+		{
+			fwrite(stud, sizeof(Student),1, fop);
+		} else
+		{
+			printf("Enter student regno:");
+			scanf("%d", &stud->regno);
+			printf("Enter student flname:");
+			scanf("%s", stud->fname);
+			printf("Enter student lname:");
+			scanf("%s", stud->lname);
+			printf("Enter student gender:");
+			scanf("%s", stud->gender);
+			printf("Enter student course:");
+			scanf("%s", stud->course);
+			fwrite(stud, sizeof(Student),1, fop);
+		}
+	}
+	fclose(fptr);
+	fclose(fop);
+	
+	fptr = fopen("student.txt", "w");
+	fop = fopen("temporary.txt", "rb");
+	while(fread(stud, sizeof(Student), 1, fop))
+	{
+		fwrite(stud, sizeof(Student), 1, fptr);
+	}
+	printf("Record updated...\n");
+	fclose(fop);
+	fclose(fptr);
+}
