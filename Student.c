@@ -87,3 +87,31 @@ void editdetails(Student *stud)
 	fclose(fop);
 	fclose(fptr);
 }
+
+// Print student details of the console
+void printdetails(Student *stud)
+{
+	FILE *fptr;
+	fptr = fopen("student.txt","rb");
+	if(fptr == NULL)
+	{
+		printf("Error opening file...");
+	}
+	
+	int i = 0;
+	while(fread(stud, sizeof(Student), 1, fptr))
+	{
+		printf("\n");
+		printf("RegNo: %d\n", stud->regno);
+		printf("First Name: %s\n", stud->fname);
+		printf("Last Name: %s\n", stud->lname);
+		printf("Gender: %s\n", stud->gender);
+		printf("Course: %s\n", stud->course);
+	}
+	for(; i < 10; i++)
+	{
+		printf("==");
+	}
+	printf("\n");
+	fclose(fptr);		
+}
