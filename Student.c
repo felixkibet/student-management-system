@@ -9,6 +9,12 @@ struct Student {
 	char gender[2];
 	char course[10];
 };
+// Function prototypes
+void adddetails(Student *stud);
+void editdetails(Student *stud);
+void printdetails(Student *stud);
+void searchstudent(Student *stud);
+void deletestudent(Student *stud);
 
 int main()
 {
